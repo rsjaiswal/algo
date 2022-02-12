@@ -1,0 +1,41 @@
+Q1. Why is Math.max() smaller than Math.min() ?
+Ans. If no arguments are given, Math.min() returns infinity and Math.max() returns -infinity . This is simply part of the specification for the max() and min() methods, but there is good logic behind the choice.
+
+Math.min(1) 
+// 1
+Math.min(1, infinity)
+// 1
+Math.min(1, -infinity)
+// -infinity
+
+Q2. Why does 0.1 + 0.2 === 0.3 return false ?
+Ans. In short, it’s to do with how accurately JavaScript can store floats in binary. If you type the following equations into Google Chrome’s console, you’ll get:
+
+0.1 + 0.2
+// 0.30000000000000004
+0.1 + 0.2 - 0.2
+// 0.10000000000000003
+0.1 + 0.7
+// 0.7999999999999999
+
+Q3.Why Does 018 Minus 017 Equal 3 ?
+Ans. The fact that 018 — 017 returns 3 is a result of silent type conversion. In this case, we’re talking about octal numbers.
+
+Notes:
+The following are examples of octal numbers:
+01234 -077 0312
+Positive octal numbers must begin with 0 (zero) followed by octal digit(s).
+Negative octal numbers must begin with -0 followed by octal digit(s).
+
+And these are examples of hexadecimal numbers:
+0xFF -0xCCFF 0xabcdef
+Positive hexadecimals must begin with 0x and negative hexadecimals must begin with -0x.
+
+When you need to convert an octal or hexadecimal string to a number, use the function parseInt(str,base). Consider these examples:
+
+octalStr='377';
+num = parseInt(octalStr,8);  // num now holds 255
+
+hexStr='7F';
+num = parseInt(hexStr,16);   // num now holds 127
+The second argument of parseInt specifies the base of the number whose representation is contained in the original string. This argument can be any integer from 2 to 36.
